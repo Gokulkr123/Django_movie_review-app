@@ -1,0 +1,58 @@
+{% extends 'layout/app-layout.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<style>
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    .btn-action {
+        margin-right: 10px; /* Increase the margin between icons */
+    }
+
+    body {
+        background-image: url('your-image-url.jpg'); /* Replace 'your-image-url.jpg' with the URL of your desired image */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+</style>
+
+<div class="container">
+    <h1 class="text-center">Reviews</h1>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Movie ID</th>
+                    <th>Movie Name</th>
+                    <th>Movie Poster</th>
+                    <th>Release Date</th>
+                    <th>Rating</th>
+                    <th>Review</th>
+                    <th>Modify</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for movie in movie_list %}
+                    <tr>
+                        <td>{{ movie.id }}</td>
+                        <td>{{ movie.movie_name }}</td>
+                        <td><img src="{{ movie.movie_poster }}" class="img-responsive" width="300" height="300" alt="Movie Poster"></td>  
+                        <td>{{ movie.release_date }}</td>
+                        <td>{{ movie.rating }}</td> 
+                        <td>{{ movie.review }}</td>  
+                        <td>
+                            <a href="{% url 'update' movie.id %}" class="btn btn-success btn-action"><i class="fas fa-pen"></i></a>
+                            <a href="{% url 'delete' movie.id %}" class="btn btn-danger btn-action"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

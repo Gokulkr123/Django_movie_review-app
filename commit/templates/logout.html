@@ -1,0 +1,53 @@
+{% extends "layout/app-layout.html" %}
+
+{% block content %}
+<style>
+  body {
+    background-image: url('https://images.pexels.com/photos/9743105/pexels-photo-9743105.jpeg?auto=compress&cs=tinysrgb&w=400');
+    background-size: 100% 100%; /* Cover the entire body */
+    background-position: center;
+    background-repeat: no-repeat;
+    color: black; /* Change text color to black */
+    font-family: Arial, sans-serif;
+    padding: 50px;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  p {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  form {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+</style>
+
+<h1 >sure You want to Logout {{user.username}}</h1>
+<img src="https://media1.tenor.com/m/ZDVF7-9P-cQAAAAC/sponge-bob-thumbs-up.gif">
+{% if user.is_authenticated %}
+  <p>You are currently logged in as {{ user.username }}.</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Log Out</button>
+  </form>
+{% else %}
+  <p>You are not currently logged in.</p>
+{% endif %}
+{% endblock %}

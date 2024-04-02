@@ -1,0 +1,35 @@
+{% extends 'layout/app-layout.html' %}
+
+{% block content %}
+<style>
+body {
+  background-image: url('https://images.pexels.com/photos/2566036/pexels-photo-2566036.jpeg?auto=compress&cs=tinysrgb&w=600');
+} </style>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2 class="text-center">Login</h2>
+        </div>
+        <div class="panel-body">
+          <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+              <div class="form-group">
+                <label for="{{ field.id_for_label }}" class="control-label">{{ field.label }}</label>
+                {{ field }}
+              </div>
+            {% endfor %}
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-block">Confirm</button>
+              <h3>Don't have an Account? ,create one</h3>
+              <a href="{% url 'signup' %}"  >Create Account</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
